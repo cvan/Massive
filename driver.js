@@ -329,17 +329,24 @@ function showFinalScore(score) {
   document.getElementById('copy_results').hidden = false;
 }
 
+if (window.location.search) {
+  var benches = window.location.search.substr(1).replace(/\//g, '').split(',');
+  jobs = jobs.filter(function(job) { return benches.indexOf(job.benchmark) >= 0 });
+  if (jobs.length === 0) alert('all jobs filtered by your list (index.html?job1,job2,job3 syntax was assumed, and we saw the url end in "' + window.location.search + '"), this seems wrong :(');
+}
+
 var ran = false;
 function run() {
   if (ran) return;
   ran = true;
 
-  document.getElementById('blurb').hidden = true;
   document.getElementById('results_area').hidden = false;
   document.getElementById('warning').hidden = true;
 
   var theButton = document.getElementById('the_button');
-  theButton.innerHTML = 'Running benchmarks... (this can take a while)';
+  theButton.classList.add('btn-running');
+  theButton.dataset.running = 'Running benchmarks…';
+  // theButton.innerHTML = 'Running benchmarks... (this can take a while)';
   theButton.classList.remove('btn-primary');
   theButton.classList.add('btn-warning');
 
@@ -352,7 +359,6 @@ function run() {
   var curr = 0;
 
   function runJob() {
-
     var job = jobs[curr++];
     if (!job) {
       // All benchmarks complete!
