@@ -1,0 +1,165 @@
+* {
+  -moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: #fff;
+  color: #333;
+  font: 15px "Source Sans Pro", sans-serif;
+	margin-top: 80px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+}
+
+h2 {
+  color: #111;
+  font-size: 150%;
+  line-height: 1.75;
+}
+
+p, h2 {
+  margin: 20px 0;
+}
+
+h1 {
+	font-size: 32px;
+}
+
+h1 + p {
+	margin-top: 10px;
+}
+
+a {
+	text-decoration: none;
+	transition: border-bottom .15s ease-in-out, color .15s ease-in-out;
+}
+
+.prose a {
+	border-bottom: 1px solid #eee;
+	padding-bottom: 2px;
+}
+
+.prose a:link {
+  color: #07d;
+}
+
+.prose a:active {
+	border-bottom-color: #fed;
+	color: #f81;
+}
+
+.prose a:hover {
+	border-bottom-color: #9cf;
+	color: #0ae;
+}
+
+.prose a:visited {
+  color: #95b;
+}
+
+@media (max-width: 320px) {
+  body {
+    padding: 0;
+  }
+}
+
+.flex {
+	/* Vertically centre with old flexbox */
+	display: -webkit-box;   /* iOS 6-, Safari 3.1-6 */
+	display: -moz-box;      /* Firefox 19- (buggy but mostly works) */
+	display: -ms-flexbox;   /* IE 10 */
+	display: -webkit-flex;  /* Chrome */
+	display: flex;          /* Opera 12.1, Firefox 20+ */
+}
+
+.vcentre {
+	/* Vertically centre with old flexbox */
+	-webkit-align-items: center;
+	-moz-box-align: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+
+	/* Vertically centre with new flexbox */
+	align-items: center;
+}
+
+.header {
+	background: rgba(255,255,255,.9);
+	/*background: #4481e3;*/
+	height: 80px;
+
+	position: fixed;
+	top: 0;
+	z-index: 1;
+	left: 0;
+	right: 0;
+}
+
+nav {
+	align-items: flex-end;
+	flex: 1;
+	font-size: 0;
+}
+
+nav li {
+	display: inline-block;
+	height: 100%;
+	list-style: none;
+	margin-left: 10px;
+}
+
+nav li + li a {
+	padding-left: 10px;
+}
+
+nav a {
+	background: red;
+	border: 0;
+	color: #999;
+	display: block;
+	font-size: 16px;
+	height: 80px;
+}
+
+nav a:hover {
+	color: #369;
+}
+
+nav a.selected {
+	color: #286;
+	font-weight: bold;
+}
+
+a.logo {
+	border: 0;
+	color: #222;
+	display: block;
+}
+
+masthead {
+	background: #8ba;
+	color: #fff;
+	display: block;
+	padding: 30px 0;
+}
+
+masthead a {
+	color: #6ff;
+}
+
+.wrap {
+	background:orange;
+	margin: 0 auto;
+	max-width: 1200px;
+	width: 80%;
+}
