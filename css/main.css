@@ -22,7 +22,6 @@ body {
   background: #fff;
   color: #333;
   font: 16px "Source Sans Pro", sans-serif;
-	margin-top: 80px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -38,6 +37,16 @@ h2 {
   font-size: 42px;
   font-weight: 300;
   line-height: 1.75;
+}
+
+h3 {
+	color: darkcyan;
+	font-size: 24px;
+	font-weight: 500;
+}
+
+.prose {
+	line-height: 1.5;
 }
 
 .prose h2,
@@ -129,6 +138,10 @@ a {
 	right: 0;
 }
 
+.header + * {
+	margin-top: 80px;
+}
+
 nav {
   flex-direction: row;
   flex-wrap: wrap;
@@ -153,7 +166,9 @@ nav a:hover {
 	color: #369;
 }
 
-nav a.selected {
+[data-hash="#benchmarks"] a[href="#benchmarks"],
+[data-hash="#faq"] a[href="#faq"],
+[data-hash="#resources"] a[href="#resources"] {
 	color: #286;
 	font-weight: 600;
 }
@@ -338,4 +353,12 @@ input, button, textarea {
 
 main {
 	background: #fff5d7;
+}
+
+.resources {
+	background: #fdd;
+}
+
+.footer {
+	background: #eee;
 }

@@ -21,20 +21,20 @@
           </em>
         </a>
         <nav class="flex">
-          <a href="/" class="flex vcentre">Benchmarks</a>
-          <a href="/faq/" class="flex vcentre">FAQ</a>
-          <a href="/resources/" class="flex vcentre">Resources</a>
+          <a href="#benchmarks" class="flex vcentre">Benchmarks</a>
+          <a href="#faq" class="flex vcentre">FAQ</a>
+          <a href="#resources" class="flex vcentre">Resources</a>
           <a href="https://github.com/kripken/Massive" class="flex vcentre">Source Code</a>
         </nav>
       </div>
     </header>
-    <masthead class="masthead-intro">
+    <masthead id="intro" class="masthead-intro">
       <div class="wrap wrap-juicy wrap-dark">
         <h1>Massive</h1>
         <p>Massive is a JavaScript benchmark that focuses on large, real-world C++ codebases compiled into <a href="http://asmjs.org">asm.js</a> using <a href="http://emscripten.org">Emscripten</a>.</p>
       </div>
     </masthead>
-    <section class="benchmarks">
+    <section id="benchmarks" class="benchmarks">
       <div class="wrap wrap-juicy wrap-light wrap-centre">
         <h2>Run the benchmarks now</h2>
         <p>Benchmarks will take a while to run, and some browsers may become less responsive for part of that time.</p>
@@ -42,7 +42,7 @@
       </div>
     </section>
     <main>
-      <div class="wrap wrap-juicy prose">
+      <div id="faq" class="wrap wrap-juicy prose">
         <h2>FAQ</h2>
         <h3>Why make a new benchmark?</h3>
         <p>asm.js appears in one test in <a href="https://developers.google.com/octane/">Octane</a>, and in several
@@ -58,7 +58,7 @@
            <a href="http://unrealengine.com/">Epic</a> are starting to compile their large codebases to asm.js).
            For these reasons, the Massive benchmark includes several very large codebases (Poppler, SQLite, etc.), and measures throughput as well as
            responsiveness, variability and startup time (see details below).</p>
-        <h3>How does this relate to the Emscripten benchmark suite - what does this offer over that?</h3>
+        <h3>How does this relate to the Emscripten benchmark suite? What does this offer over that?</h3>
         <p>The <a href="http://kripken.github.io/embenchen/">Emscripten benchmark suite</a> evolved over time in order
            to benchmark Emscripten itself, and therefore mainly focused on throughput, and is runnable in both shell and
            browser. Massive, on the other hand, tests not just
@@ -137,27 +137,44 @@
         <p>Sure, use a URL like <a href="index.html?box2d-throughput,box2d-throughput-f32"><code>index.html?box2d-throughput,box2d-throughput-f32</code></a> to run just those benchmarks.</p>
       </div>
     </main>
+    <section id="resources" class="resources">
+      <div class="wrap wrap-juicy prose">
+        <h2>Resources</h2>
+        <h3>Massive</h3>
+        <ul>
+          <li><a href="https://github.com/kripken/Massive">Source code</a></li>
+        </ul>
 
+        <h3>asm.js</h3>
+        <ul>
+          <li><a href="https://github.com/dherman/asm.js">Source code</a></li>
+        </ul>
 
-<!-- <h3>v0.3.1 (beta)</h3> -->
-
-<!--
-
-https://github.com/dherman/asm.js
-
-<h3>Emscripten</h3>
-<a href="https://github.com/kripken/emscripten/wiki/Porting-Examples-and-Demos">Demos and Examples</a>
-<a href="https://github.com/kripken/emscripten/wiki">Wiki</a>
-<a href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Emscripten">MDN</a>
-
--->
-
+        <h3>Emscripten</h3>
+        <ul>
+          <li><a href="https://github.com/kripken/emscripten">Source code</a></li>
+          <li><a href="https://github.com/kripken/emscripten/wiki/Porting-Examples-and-Demos">Demos and Examples</a></li>
+          <li><a href="https://github.com/kripken/emscripten/wiki">Wiki</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Emscripten">MDN</a></li>
+        </ul>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="wrap wrap-juicy">
+        <p>v0.3.1 (beta)</p>
+      </div>
+    </footer>
     <script>
       // Open external links in a new tab.
       Array.prototype.slice.call(
         document.querySelectorAll('[href^="//"], [href*="://"]')
       ).forEach(function (link) {
         link.setAttribute('target', '_blank');
+      });
+
+      // Set `data` attribute for the current section so we can use as a CSS selector.
+      window.addEventListener('hashchange', function () {
+        document.body.dataset.hash = window.location.hash;
       });
     </script>
   </body>
