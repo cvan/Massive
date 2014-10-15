@@ -45,6 +45,17 @@ h3 {
   font-weight: 500;
 }
 
+.slogan {
+  display: block;
+  font-size: 32px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.slogan a {
+
+}
+
 .prose {
   line-height: 1.5;
 }
@@ -73,13 +84,13 @@ p + p {
 }
 
 a {
+  padding-bottom: 2px;
   text-decoration: none;
   transition: border-bottom .05s ease-in-out, color .05s ease-in-out;
 }
 
 .prose a {
   border-bottom: 1px solid #eee;
-  padding-bottom: 2px;
 }
 
 .prose a:link {
@@ -127,9 +138,10 @@ a {
 }
 
 .header {
-  background: #fff;
-  box-shadow: 0 3px 6px rgba(0,0,0,.1);
-  box-shadow: 0 1px 3px rgba(0,0,0,.25);
+  /*background: #bdf;*/
+  background: rgba(187,221,255,.25);
+  /*box-shadow: 0 3px 6px rgba(0,0,0,.1);
+  box-shadow: 0 1px 3px rgba(0,0,0,.25);*/
   height: 80px;
   position: fixed;
   top: 0;
@@ -179,76 +191,72 @@ nav a:hover {
 }
 
 a.logo {
-  /*background: yellow;*/
   border: 0;
   color: #222;
   flex: 1;
-
-  padding: 15px 0 15px 50px;
+  padding: 15px 0 15px 100px;
 
   flex-direction: column;
   justify-content: space-between;
   align-content: stretch;
   align-items: stretch;
+  justify-content: center;
 
   position: relative;
 }
 
 a.logo:before {
-  background: url(../img/logo.png) no-repeat;
+  background: url(../img/iceberg.svg) no-repeat;
   background-size: contain;
   content: "";
   left: 0;
-  min-height: 50px;
+  top: 47px;
+  min-height: 150px;
   position: absolute;
-  width: 50px;
-}
-
-.mozilla {
-  background: url(../img/mozilla.svg) no-repeat;
-  background-size: contain;
-  display: block;
-  height: 12px;
-  width: 60px;
+  width: 100px;
 }
 
 .massive {
   display: block;
-  font-size: 28px;
+  font-size: 48px;
   font-weight: 600;
-  line-height: 28px;
-  padding-top: 2px;
-  position: relative;
-  left: -2px;
-}
-
-.slogan {
-  color: #666;
-  display: block;
-  font-size: 10px;
-  font-style: normal;
-  padding-top: 6px;
+  line-height: 1;
 }
 
 masthead {
-  background: #8ba;
+/*  background: #8ba;
+*/
+/*background: #359;*/
+background: #57c;
+
+/*
+blues:
+#adf
+#79d
+--
+#57c
+#359
+*/
+  border-top: 2px solid #fff;
   color: #fff;
   display: block;
 }
 
 masthead a {
-  color: #6ff;
-  text-decoration: underline;
+  color: inherit;
 }
 
-masthead a:hover {
+masthead a {
+  border-bottom: 3px solid rgba(102,255,255,.25);
   color: #cff;
 }
 
+masthead a:hover {
+  border-bottom: 3px solid rgba(102,255,255,.5);
+  color: #6ff;
+}
+
 .masthead-intro .wrap {
-  background-position: 100% 50%;
-  background-image: url(../img/logo.png);
-  background-size: auto 90px;
 }
 
 .wrap {
