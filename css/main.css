@@ -202,6 +202,10 @@ nav a:hover {
   font-weight: 600;
 }
 
+.answer {
+  display: none;
+}
+
 a.logo {
   border: 0;
   color: #222;

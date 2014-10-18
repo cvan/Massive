@@ -40,7 +40,8 @@
       <div class="wrap wrap-juicy prose">
         <h2>FAQ</h2>
         <h3>Why make a new benchmark?</h3>
-        <p>asm.js appears in one test in <a href="https://developers.google.com/octane/">Octane</a>, and in several
+        <div class="answer">
+          <p>asm.js appears in one test in <a href="https://developers.google.com/octane/">Octane</a>, and in several
            tests in <a href="http://browserbench.org/JetStream/">JetStream</a>, which is great, but several aspects of asm.js performance are
            not fully measured in those. In particular, asm.js
            often appears as large (you might even say <b>massive</b>) source files, which can have different performance characteristics than the typical
@@ -53,30 +54,34 @@
            <a href="http://unrealengine.com/">Epic</a> are starting to compile their large codebases to asm.js).
            For these reasons, the Massive benchmark includes several very large codebases (Poppler, SQLite, etc.), and measures throughput as well as
            responsiveness, variability and startup time (see details below).</p>
+        </div>
         <h3>How does this relate to the Emscripten benchmark suite? What does this offer over that?</h3>
-        <p>The <a href="http://kripken.github.io/embenchen/">Emscripten benchmark suite</a> evolved over time in order
+        <div class="answer">
+          <p>The <a href="http://kripken.github.io/embenchen/">Emscripten benchmark suite</a> evolved over time in order
            to benchmark Emscripten itself, and therefore mainly focused on throughput, and is runnable in both shell and
            browser. Massive, on the other hand, tests not just
            throughput but also browser responsiveness and other factors that only make sense when running in a browser, things
            not measured by the Emscripten benchmark suite (or by the main JavaScript benchmarks).</p>
+        </div>
         <a name="explanations"></a>
         <h3>What do the categories ("Main Thread Responsiveness", "Throughput", "Preparation", and "Variance") mean?</h3>
-        <p><b>Main Thread Responsiveness</b> measures the user experience as a large codebase is loaded. What is tested is whether
+        <div class="answer">
+          <p><b>Main Thread Responsiveness</b> measures the user experience as a large codebase is loaded. What is tested is whether
            the main thread stalls as the codebase is prepared and executed for a short while. The score here can be improved
            by parsing the code off the main thread, for example. This does <b>not</b> measure how much time is spent,
            but only how responsive or unresponsive the user experience is (how much time is spent is measured by
            Preparation, and to some extent Throughput). Technically, we measure responsiveness by seeing if events on
            the main thread execute at the proper interval (as when the main thread stalls, it stalls both the user
            experience and other events).</p>
-        <p><b>Throughput</b> measures how fast a large computational workload runs. This is what is typically measured by
+          <p><b>Throughput</b> measures how fast a large computational workload runs. This is what is typically measured by
            benchmarks. Massive's throughput tests focus on very large real-world codebases.</p>
-        <p><b>Preparation</b> measures how long (in wall time) is spent to get a codebase ready to execute, before
+          <p><b>Preparation</b> measures how long (in wall time) is spent to get a codebase ready to execute, before
            executing any of it. This measures how much
            time passes between adding a script tag with that code and being able to call the code (this may or may not
            cause a user-noticeable pause, depending on whether it is parsed on or off the main thread; Main Thread Responsiveness
            tests that aspect). "Preparation" is basically all the time before code is actually able to run; that may include
            parsing, conversion to bitcode, JIT compilation, etc., depending on the JS engine.</p>
-        <p><b>Variance</b> measures how variable the frame rate is in an application that needs to run in each frame
+          <p><b>Variance</b> measures how variable the frame rate is in an application that needs to run in each frame
            (this is important in things like games, which must finish all they need every 1/60 of a second, in order to be
            smooth). Specifically, we run many frames and then calculate the statistical variance and worst case. Note that
            one VM might have a much faster overall frame rate than another, but also more variance: in general, given two
@@ -84,19 +89,23 @@
            things are less clear (perhaps we are happy to get some average slowdown in order to reduce variance which can
            cause noticable but rare pauses?). Hence we measure variance separately from throughput (which is a measurement of the total
            speed, and is proportional to the average).</p>
+        </div>
         <h3>How consistent are these results between runs of the benchmark suite?</h3>
-        <p>Most of the tests, in particular the throughput ones, are generally very consistent, as we run a deterministic workload
+        <div class="answer">
+          <p>Most of the tests, in particular the throughput ones, are generally very consistent, as we run a deterministic workload
            in a web worker, which minimizes outside noise. We also run a few repetitions and average the results. However, in particular
            the Main Thread Responsiveness tests need to run on the main thread, and they involve DOM events like adding a script tag,
            setInterval, etc., which can be fairly variable. We run a larger amount of repetitions on those tests to average out the
            noise, but even so they appear to be less consistent between runs on some browsers.</p>
-        <a name="toovariable"></a>
-        <p>When we see the results of a test are too variable, we mark it with <b>"(±X%!)"</b> next to the score. The cause of such variability
-           might be something else on your machine (perhaps a background indexing service happend to use a CPU core during a test, etc.),
-           or it might be that the browser behaves unpredictably for some reason.</p>
+          <a name="toovariable"></a>
+          <p>When we see the results of a test are too variable, we mark it with <b>"(±X%!)"</b> next to the score. The cause of such variability
+             might be something else on your machine (perhaps a background indexing service happend to use a CPU core during a test, etc.),
+             or it might be that the browser behaves unpredictably for some reason.</p>
+        </div>
         <h3>What code is being tested in these benchmarks?</h3>
-        <p>All the benchmarks here are from real-world C or C++ codebases:
-        <ul>
+        <div class="answer">
+          <p>All the benchmarks here are from real-world C or C++ codebases:</p>
+          <ul>
             <li><b>Box2D</b>: A 2D physics engine, used in many games, for example Angry Birds. Stresses
                               floating-point processing performance. The workload is based on
                               <a href="https://github.com/joelgwebber/bench2d/">jgw's bench2D</a>. (~30KLOC)</li>
@@ -114,13 +123,14 @@
                                challenging to optimize. The workload is the SQLite speedtest1.c benchmark,
                                which SQLite devs constructed to represent real-world usage patterns. (~128KLOC)</li>
           </ul>
-          All of these codebases are open source, so you can build and inspect them yourself (the build
-          tool, <a href="http://emscripten.org">Emscripten</a>, is of course open source as well).
-        </p>
-        <p>Note that the KLOC numbers mentioned above do not include system libraries like libc and libc++,
-           the necessary parts of which are necessarily included in the benchmarks.</p>
+          <p>All of these codebases are open source, so you can build and inspect them yourself (the build
+          tool, <a href="http://emscripten.org">Emscripten</a>, is of course open source as well).</p>
+          <p>Note that the KLOC numbers mentioned above do not include system libraries like libc and libc++,
+             the necessary parts of which are necessarily included in the benchmarks.</p>
+        </div>
         <h3>How long does Massive take to run?</h3>
-        <p>Generally quite a while, as it is designed to execute fixed workloads of sufficient length to
+        <div class="answer">
+          <p>Generally quite a while, as it is designed to execute fixed workloads of sufficient length to
            measure real-world performance on large applications. How long it takes will depend on the machine and
            browser, of course, but you can probably expect it to take at least a few minutes (on a desktop or laptop
            machine; a mobile device may take much more). Massive should not lock up your
@@ -128,8 +138,11 @@
            are run in web workers (and even the Main Thread Responsiveness tests should not reduce responsiveness
            very much). Note that results of individual benchmarks show up when ready, so you can view those
            before all of Massive is complete.</p>
+        </div>
         <h3>Can I run just an individual benchmark, for testing purposes?</h3>
-        <p>Sure, use a URL like <a href="index.html?box2d-throughput,box2d-throughput-f32"><code>index.html?box2d-throughput,box2d-throughput-f32</code></a> to run just those benchmarks.</p>
+        <div class="answer">
+          <p>Sure, use a URL like <a href="index.html?box2d-throughput,box2d-throughput-f32"><code>index.html?box2d-throughput,box2d-throughput-f32</code></a> to run just those benchmarks.</p>
+        </div>
       </div>
     </section>
     <section id="resources" class="resources">
