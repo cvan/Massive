@@ -13,7 +13,9 @@ Array.prototype.slice.call(
 });
 
 // Set `data` attribute for the current section so we can use as a CSS selector.
-window.addEventListener('hashchange', updateHash);
+window.addEventListener('hashchange', function () {
+  updateHash();
+});
 
 function updateHash() {
   document.body.dataset.hash = window.location.hash;

@@ -10,8 +10,8 @@ a:not([href]) {
   cursor: pointer;
 }
 
-.hideme {
-  text-indent: -9999px;
+.hidden {
+  /*display: none;*/
 }
 
 html, body {
@@ -391,4 +391,100 @@ input, button, textarea {
 
 .footer {
   background: #eee;
+}
+
+table {
+  margin: .75em 0;
+  table-layout: fixed;
+  text-align: left;
+  width: 100%;
+}
+
+tr, td, th {
+  vertical-align: middle;
+}
+
+tbody {
+  background-color: #f7f7f7;
+}
+
+.table-bordered {
+  border: 1px solid #ddd;
+  border-collapse: separate;
+  border-left: 0;
+  border-spacing: 0;
+  border-radius: 3px;
+}
+
+.table-bordered thead th:first-child {
+  border-top-left-radius: 3px;
+}
+
+.table-bordered thead th:last-child {
+  border-top-right-radius: 3px;
+}
+
+.table-bordered thead th {
+  background-color: #FFF;
+  border-left: 1px solid #DDD;
+  border-bottom: 0;
+  padding: .5em;
+}
+
+.table-bordered td {
+  border: 1px solid #ddd;
+  border-width: 1px 0 0 1px;
+  padding: .5em;
+}
+
+.table-striped tbody tr:nth-child(even) {
+  background-color: #ececec;
+}
+
+.row-group,
+.table-striped tbody tr:nth-child(even).row-group {
+  /*background: #dfe;*/
+  background: rgb(221,255,238);
+}
+
+.row-pending {
+  color: rgba(0,0,0,.25);
+}
+
+.row-group.row-pending {
+  background: rgba(221,255,238,.25);
+}
+
+.cell-group-title {
+  font-weight: bold;
+}
+
+.cell-running {
+  background-color: #ffa;  /* old: #fda */
+  font-style: italic;
+}
+
+.cell-number {
+  background-color: #bcf;  /* old: #bfc */
+  font-weight: bold;
+  text-align: right;
+}
+
+.cell-number ~ .cell-scale {
+  font-weight: bold;
+}
+
+.cell-scale {
+  text-align: left;
+}
+
+.cell-description {
+  color: #666;
+  font-size: 12px;
+  text-align: left;
+}
+
+small {
+  color: #999;
+  font-size: 11px;
 }
