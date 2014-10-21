@@ -33,7 +33,28 @@
       <div class="wrap wrap-juicy wrap-light wrap-centre">
         <h2>Run the benchmarks now</h2>
         <p>Benchmarks will take a while to run, and some browsers may become less responsive for part of that time.</p>
-        <p><a class="btn btn-cta" id="btn-run">Run</a></p>
+        <p><a class="btn btn-cta btn-run" id="btn-run">Run</a></p>
+
+        <div class="row-fluid" id="results_area" hidden=1>
+          <div id="presentation-area"></div>
+          <div class="span">
+            <h3>Individual Benchmark Results</h3>
+              <table class="table table-striped table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>Benchmark</th>
+                    <th>Result</th>
+                    <th>Scale</th>
+                    <th>What it measures</th>
+                    <!--th>Normalized score<br>(higher is better)</th-->
+                  </tr>
+                </thead>
+                <tbody id="table_body">
+                </tbody>
+              </table>
+          </div>
+        </div>
+
       </div>
     </section>
     <section id="faq" class="faq">

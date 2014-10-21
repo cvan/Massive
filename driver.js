@@ -373,6 +373,7 @@ if (window.location.search) {
 
 var ran = false;
 function run() {
+  console.log('running');
   if (ran) return;
   ran = true;
 
@@ -553,8 +554,8 @@ var btnCopy = document.getElementById('btn-copy');
 var btnRun = document.getElementById('btn-run');
 var btnPaste = document.getElementById('btn-paste');
 
-btnCopy.addEventListener('click', _pd(copyData), false);
-btnRun.addEventListener('click', _pd(run), false);
-btnPaste.addEventListener('click', _pd(pasteData), false);
+btnCopy.addEventListener('click', _pd(copyData));
+btnRun.addEventListener('click', _pd(run));
+btnPaste.addEventListener('click', _pd(pasteData));
 
-document.addEventListener('DOMContentLoaded', function() { if (autoRun) run(); }, false);
+document.addEventListener('DOMContentLoaded', function() { if (autoRun) run(); });
