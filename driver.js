@@ -80,7 +80,7 @@ function makeMainThreadBenchmark(name, args, before, after) {
 }
 
 function togglePresentationArea() {
-  area.style.display = area.style.display === 'block' ? 'none' : 'block';
+  // area.classList.toggle('visible');
 }
 
 var jobMap = {};

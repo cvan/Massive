@@ -444,15 +444,20 @@ tbody {
 .row-group,
 .table-striped tbody tr:nth-child(even).row-group {
   /*background: #dfe;*/
-  background: rgb(221,255,238);
+  background: rgb(221,238,255);
+  /*background: #eee;*/
+  /*background: rgb(221,221,221);*/
 }
 
 .row-pending {
   color: rgba(0,0,0,.25);
 }
 
-.row-group.row-pending {
-  background: rgba(221,255,238,.25);
+.row-group.row-pending,
+.table-striped tbody tr:nth-child(even).row-group.row-pending {
+  background: rgba(221,238,255,.25);
+  /*background: rgba(221,255,238,.25);*/
+  /*background: rgba(221,221,245,.75);*/
 }
 
 .cell-group-title {
@@ -487,4 +492,26 @@ tbody {
 small {
   color: #999;
   font-size: 11px;
+}
+
+.toggly {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.toggly.visible {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+iframe {
+  border: 0;
+  width: 100%;
+}
+
+#presentation-area,
+iframe {
+  height: 200px;
 }

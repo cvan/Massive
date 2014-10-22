@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Emscripten-Generated Code</title>
     <style>
+      body { font-family: monospace; }
       .emscripten { padding-right: 0; margin-left: auto; margin-right: auto; display: block; }
       textarea.emscripten { font-family: monospace; width: 80%; }
       div.emscripten { text-align: center; }
@@ -12,6 +13,7 @@
       /* the canvas *must not* have any border or padding, or mouse coords will be wrong */
       canvas.emscripten { border: 0px none; }
       textarea {
+        font: inherit;
         font-size: 30pt;
         font-weight: bold;
       }
@@ -21,7 +23,7 @@
     <p>An 'X' should move around, indicating responsiveness (after download, which is not counted)</p>
     <textarea id="spinner" cols=20 maxlength=20 disabled=1>...</textarea>
     <div class="emscripten">
-      <progress value="0" max="100" id="progress" hidden=1></progress>  
+      <progress value="0" max="100" id="progress" hidden=1></progress>
     </div>
     <div style="display:none">
       <div class="emscripten_border">
@@ -31,7 +33,7 @@
         <input type="checkbox" id="resize">Resize canvas
         <input type="checkbox" id="pointerLock" checked>Lock/hide mouse pointer
         &nbsp;&nbsp;&nbsp;
-        <input type="button" value="Fullscreen" onclick="Module.requestFullScreen(document.getElementById('pointerLock').checked, 
+        <input type="button" value="Fullscreen" onclick="Module.requestFullScreen(document.getElementById('pointerLock').checked,
                                                                                   document.getElementById('resize').checked)">
       </div>
       <textarea class="emscripten" id="output" rows="8"></textarea>
