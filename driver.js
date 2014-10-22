@@ -29,6 +29,12 @@ function prettyInteger(x) {
   return ret;
 }
 
+function normalize(job) {
+  var ret = 10000 * job.normalized();
+  if (isNaN(ret)) throw 'invalid data for ' + job.benchmark;
+  return ret;
+}
+
 var SECONDS = 'seconds <small>(lower is better)</small>';
 var MILLISECONDS = 'milliseconds <small>(lower is better)</small>';
 var MFLOPS = 'MFLOPS <small>(<b>higher</b> is better)</small>';
@@ -320,11 +326,15 @@ var jobs = [
   }
 ];
 
-function normalize(job) {
-  var ret = 10000 * job.normalized();
-  if (isNaN(ret)) throw 'invalid data for ' + job.benchmark;
-  return ret;
-}
+jobs = jobs.map(function (job) {
+  if (job.description) {
+    job.description += ' (<a href="#faq-explanations">details</a>)';
+  } else {
+    job.description = '';
+  }
+
+  return job;
+});
 
 var tableBody = $('#table-body');
 var tableBodyLines = jobs.map(function (job) {
@@ -332,14 +342,17 @@ var tableBodyLines = jobs.map(function (job) {
     return (
       '<tr class="row-pending row-group" title="' + job.title + '">\n' +
       '  <td class="cell-group-title">' + job.title + '</td>\n' +
-      '  <td></td><td></td><td></td>\n' +
+      '  <td colspan="2"></td>\n' +
+      '  <td class="cell-description">' + job.description + '</td>\n' +
       '</tr>\n'
     );
   } else {
     return (
       '<tr class="row-pending row-test">\n' +
       '  <td title="' + job.benchmark + '">' + job.benchmark + '</td>\n' +
-      '  <td></td><td></td><td></td>\n' +
+      '  <td></td>\n' +
+      '  <td class="cell-scale">' + job.scale + '</td>\n' +
+      '  <td class="cell-description">' + job.description + '</td>\n' +
       '</tr>\n'
     );
   }
@@ -363,6 +376,7 @@ function showFinalScore(score) {
   btnRun.classList.remove('btn-warning');
   btnRun.classList.add('btn-success');
   copyResults.classList.remove('hidden');
+  document.body.removeAttribute('data-running');
 }
 
 // If set, start benchmarks automatically
@@ -418,7 +432,9 @@ function run() {
   if (ran) return;
   ran = true;
 
-  // todo: toggle a class on body.
+  document.body.setAttribute('data-running', '');
+
+  aboveResultsArea.scrollIntoView(true);
 
   resultsArea.classList.remove('hidden');
 
@@ -469,16 +485,10 @@ function run() {
       return;
     }
 
-    if (job.description) {
-      job.description += ' (<a href="#faq-explanations">details</a>)';
-    } else {
-      job.description = '';
-    }
-
     if (job.title) {
       tableBodyLines[curr-1] = (
-        '<tr class="row-group row-active ' + job.title + '">\n' +
-        '  <td><b>' + job.title + '</b></td>\n' +
+        '<tr class="row-group row-active" title="' + job.title + '">\n' +
+        '  <td class="cell-group-title">' + job.title + '</td>\n' +
         '  <td colspan="2"></td>\n' +
         '  <td class="cell-description">' + job.description + '</td>\n' +
         //'  <td></td>\n' +
@@ -596,11 +606,11 @@ function copyData() {
 }
 
 function pasteData() {
-
   var data = window.prompt('Paste the old results:');
   var split = data.split('|');
   showFinalScore(split[0]);
   flushTable(split[1]);
+  btnCopy.blur();
 }
 
 function _pd(func) {
@@ -615,6 +625,8 @@ var btnCopy = $('#btn-copy');
 var btnRun = $('#btn-run');
 var btnPaste = $('#btn-paste');
 var copyResults = $('#copy-results');
+var aboveResultsArea = $('#above-results-area');
+var resultsArea = $('#results-area');
 
 btnCopy.addEventListener('click', _pd(copyData));
 btnRun.addEventListener('click', _pd(run));
@@ -623,8 +635,6 @@ btnPaste.addEventListener('click', _pd(pasteData));
 if (autoRun) {
   document.addEventListener('DOMContentLoaded', run);
 }
-
-var resultsArea = $('#results-area');
 
 $('.logo').addEventListener('click', function () {
   window.location.reload();
@@ -640,12 +650,12 @@ $$('[href^="//"], [href*="://"]').forEach(function (link) {
 window.addEventListener('hashchange', updateHash);
 
 function updateHash() {
-  document.body.dataset.hash = window.location.hash;
+  document.body.setAttribute('data-hash', window.location.hash);
 }
 
 function replaceHash(newHash) {
-  // Do not use `window.location.hash`. We don't want the page to jump to the
-  // top of that section. We're already in that section.
+  // Do not use `window.location.hash`, since we don't want the page to jump
+  // to the top of the section when we're already in that section.
   window.history.replaceState(null, null,
     window.location.pathname + (newHash || ''));
   updateHash();

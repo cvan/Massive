@@ -11,10 +11,10 @@
     <link href="css/main.css" rel="stylesheet">
   </head>
   <body>
-    <header class="header flex">
-      <div class="wrap flex vcentre">
+    <header class="header">
+      <div class="wrap flex">
         <a href="" class="logo flex flex-1">
-          <big class="massive">Massive</big>
+          <big class="massive flex vcentre">Massive</big>
         </a>
         <nav class="flex">
           <a href="#benchmarks" class="flex vcentre">Benchmarks</a>
@@ -36,8 +36,9 @@
         <p><a class="btn btn-cta btn-run" id="btn-run">Run</a></p>
         <p><button type="button" class="btn btn-paste" id="btn-paste">Enter data copied from another run</button></p>
 
-        <div class="hidden" id="results-area">
-          <div class="toggly visible" id="presentation-area"></div>
+        <div id="above-results-area"></div>
+        <div class="hidden results-area" id="results-area">
+          <div class="toggly visible presentation-area" id="presentation-area"></div>
           <h3>Individual Benchmark Results</h3>
           <table class="table-bordered table-striped">
             <thead>
