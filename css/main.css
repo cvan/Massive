@@ -270,6 +270,7 @@ masthead a:hover {
   background: #fff;
   border: 30px solid #248;
   border-left-width: 155px;
+  padding: 30px;
 }
 
 .wrap-centre {
@@ -381,7 +382,7 @@ input, button, textarea {
 }
 
 table {
-  margin: .75em 0;
+  margin: 15px 0;
   table-layout: fixed;
   text-align: left;
   width: 100%;
