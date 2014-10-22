@@ -118,12 +118,19 @@ a {
 }
 
 .flex {
-  /* Vertically centre with old flexbox */
   display: -webkit-box;   /* iOS 6-, Safari 3.1-6 */
-  display: -moz-box;      /* Firefox 19- (buggy but mostly works) */
-  display: -ms-flexbox;   /* IE 10 */
-  display: -webkit-flex;  /* Chrome */
-  display: flex;          /* Opera 12.1, Firefox 20+ */
+  display: -moz-box;      /* Firefox 2-21 */
+  display: -ms-flexbox;   /* IE 10+ */
+  display: -webkit-flex;  /* Chrome 4-20 */
+  display: flex;          /* Chrome 21+, Firefox 20+, Opera 12.1 */
+}
+
+.flex-1 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
 .vcentre {
@@ -141,12 +148,16 @@ a {
   /*background: #bdf;*/
   background: rgba(187,221,255,.75);
   box-shadow: 0 1px 3px rgba(0,0,0,.25);
-  height: 80px;
   /*position: fixed;*/
   top: 0;
   z-index: 1;
   left: 0;
   right: 0;
+}
+
+.header,
+nav a {
+  height: 80px;
 }
 
 .header:before {
@@ -161,22 +172,16 @@ a {
 }
 
 .header + * {
-/*  margin-top: 80px;
+/*
+  margin-top: 80px;
 */
 }
 
 section {
-/*  margin-top: -80px;
+/*
+  margin-top: -80px;
   padding-top: 80px;
 */
-}
-
-nav {
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-content: stretch;
-  align-items: stretch;
 }
 
 nav a {
@@ -195,29 +200,19 @@ nav a:hover {
   color: #2b8;
 }
 
+/*
 [data-hash="#benchmarks"] a[href="#benchmarks"],
 [data-hash="#faq"] a[href="#faq"],
 [data-hash="#resources"] a[href="#resources"] {
   color: #286;
   font-weight: 600;
 }
-
-.answer {
-  display: none;
-}
+*/
 
 a.logo {
   border: 0;
   color: #222;
-  flex: 1;
-  padding: 15px 0 15px 155px;
-
-  flex-direction: column;
-  justify-content: space-between;
-  align-content: stretch;
-  align-items: stretch;
-  justify-content: center;
-
+  padding: 0 0 0 155px;
   position: relative;
 }
 
@@ -226,7 +221,7 @@ a.logo:before {
   background-size: contain;
   content: "";
   left: 0;
-  top: 26px;
+  top: 10px;
   min-height: 250px;
   position: absolute;
   width: 170px;
@@ -425,8 +420,8 @@ tbody {
 }
 
 .table-bordered thead th {
-  background-color: #FFF;
-  border-left: 1px solid #DDD;
+  background-color: #fff;
+  border-left: 1px solid #ddd;
   border-bottom: 0;
   padding: .5em;
 }

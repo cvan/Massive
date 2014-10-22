@@ -12,8 +12,8 @@
   </head>
   <body>
     <header class="header flex">
-      <div class="wrap flex">
-        <a href="" class="logo flex">
+      <div class="wrap flex vcentre">
+        <a href="" class="logo flex flex-1">
           <big class="massive">Massive</big>
         </a>
         <nav class="flex">
@@ -53,7 +53,8 @@
             </tbody>
           </table>
           <div class="hidden" id="copy-results">
-            <button type="button" class="btn btn-copy" id="btn-copy">Copy results <small>(so you can view them again later)</small></button>
+            <button type="button" class="btn btn-copy" id="btn-copy">Copy results</button><br>
+            <small>(so you can view them again later)</small>
           </div>
         </div>
       </div>
@@ -61,7 +62,7 @@
     <section id="faq" class="faq">
       <div class="wrap wrap-juicy prose">
         <h2>FAQ</h2>
-        <h3 id="Why_make_a_new_benchmark">Why make a new benchmark?</h3>
+        <h3 id="faq-why_make_a_new_benchmark">Why make a new benchmark?</h3>
         <div class="answer">
           <p>asm.js appears in one test in <a href="https://developers.google.com/octane/">Octane</a>, and in several
            tests in <a href="http://browserbench.org/JetStream/">JetStream</a>, which is great, but several aspects of asm.js performance are
@@ -77,7 +78,7 @@
            For these reasons, the Massive benchmark includes several very large codebases (Poppler, SQLite, etc.), and measures throughput as well as
            responsiveness, variability and startup time (see details below).</p>
         </div>
-        <h3 id="How_does_this_relate_to_Emscripten">How does this relate to the Emscripten benchmark suite? What does this offer over that?</h3>
+        <h3 id="faq-how_does_this_relate_to_Emscripten">How does this relate to the Emscripten benchmark suite? What does this offer over that?</h3>
         <div class="answer">
           <p>The <a href="http://kripken.github.io/embenchen/">Emscripten benchmark suite</a> evolved over time in order
            to benchmark Emscripten itself, and therefore mainly focused on throughput, and is runnable in both shell and
@@ -85,8 +86,8 @@
            throughput but also browser responsiveness and other factors that only make sense when running in a browser, things
            not measured by the Emscripten benchmark suite (or by the main JavaScript benchmarks).</p>
         </div>
-        <a name="explanations"></a>
-        <h3 id="What_do_the_categories_mean">What do the categories ("Main Thread Responsiveness", "Throughput", "Preparation", and "Variance") mean?</h3>
+        <a name="faq-explanations"></a>
+        <h3 id="faq-what_do_the_categories_mean">What do the categories ("Main Thread Responsiveness", "Throughput", "Preparation", and "Variance") mean?</h3>
         <div class="answer">
           <p><b>Main Thread Responsiveness</b> measures the user experience as a large codebase is loaded. What is tested is whether
            the main thread stalls as the codebase is prepared and executed for a short while. The score here can be improved
@@ -112,19 +113,19 @@
            cause noticable but rare pauses?). Hence we measure variance separately from throughput (which is a measurement of the total
            speed, and is proportional to the average).</p>
         </div>
-        <h3 id="How_consistent_are_these_results">How consistent are these results between runs of the benchmark suite?</h3>
+        <h3 id="faq-how_consistent_are_these_results">How consistent are these results between runs of the benchmark suite?</h3>
         <div class="answer">
           <p>Most of the tests, in particular the throughput ones, are generally very consistent, as we run a deterministic workload
            in a web worker, which minimizes outside noise. We also run a few repetitions and average the results. However, in particular
            the Main Thread Responsiveness tests need to run on the main thread, and they involve DOM events like adding a script tag,
            setInterval, etc., which can be fairly variable. We run a larger amount of repetitions on those tests to average out the
            noise, but even so they appear to be less consistent between runs on some browsers.</p>
-          <a name="toovariable"></a>
+          <a name="faq-toovariable"></a>
           <p>When we see the results of a test are too variable, we mark it with <b>"(±X%!)"</b> next to the score. The cause of such variability
             might be something else on your machine (perhaps a background indexing service happend to use a CPU core during a test, etc.),
             or it might be that the browser behaves unpredictably for some reason.</p>
         </div>
-        <h3 id="What_code_is_being_tested">What code is being tested in these benchmarks?</h3>
+        <h3 id="faq-what_code_is_being_tested">What code is being tested in these benchmarks?</h3>
         <div class="answer">
           <p>All the benchmarks here are from real-world C or C++ codebases:</p>
           <ul>
@@ -150,7 +151,7 @@
           <p>Note that the KLOC numbers mentioned above do not include system libraries like libc and libc++,
              the necessary parts of which are necessarily included in the benchmarks.</p>
         </div>
-        <h3 id="How_long_does_Massive_take_to_run">How long does Massive take to run?</h3>
+        <h3 id="faq-how_long_does_Massive_take_to_run">How long does Massive take to run?</h3>
         <div class="answer">
           <p>Generally quite a while, as it is designed to execute fixed workloads of sufficient length to
            measure real-world performance on large applications. How long it takes will depend on the machine and
@@ -161,7 +162,7 @@
            very much). Note that results of individual benchmarks show up when ready, so you can view those
            before all of Massive is complete.</p>
         </div>
-        <h3 id="Can_I_run_just_an_individual_benchmark">Can I run just an individual benchmark, for testing purposes?</h3>
+        <h3 id="faq-can_I_run_just_an_individual_benchmark">Can I run just an individual benchmark, for testing purposes?</h3>
         <div class="answer">
           <p>Sure, use a URL like <a href="index.html?box2d-throughput,box2d-throughput-f32"><code>index.html?box2d-throughput,box2d-throughput-f32</code></a> to run just those benchmarks.</p>
         </div>

@@ -470,7 +470,7 @@ function run() {
     }
 
     if (job.description) {
-      job.description += ' (<a href="#explanations">details</a>)';
+      job.description += ' (<a href="#faq-explanations">details</a>)';
     } else {
       job.description = '';
     }
@@ -505,7 +505,7 @@ function run() {
     emitBenchmarkLine('running&hellip;', 'cell-running');
     flushTable();
 
-    // Run the job the specified number of times
+    // Run the job the specified number of times.
     var reps = 0;
     var totalReps = job.totalReps || 2;
     var warmupReps = job.warmupReps || 0;
@@ -513,6 +513,7 @@ function run() {
 
     function finish() {
       console.log('final: ' + JSON.stringify(results));
+
       var final = {}, i, k, sum = 0, squares = 0;
       for (i = warmupReps; i < totalReps; i++) {
         var result = results[i];
@@ -525,9 +526,10 @@ function run() {
         var curr = job.calculate();
         job.msg = null;
         sum += curr;
-        squares += curr*curr;
+        squares += curr * curr;
       }
-      // check for excessive variability
+
+      // Check for excessive variability.
       var n = totalReps - warmupReps;
       var mean = sum/n;
       var mean2 = squares/n;
@@ -535,7 +537,7 @@ function run() {
       var noise = Math.abs(std/mean)/Math.sqrt(n);
       var tooVariable = noise > 0.2;
 
-      // calculate final score
+      // Calculate final score.
       for (k in final) {
         if (typeof final[k] === 'number') {
           final[k] /= totalReps - warmupReps;
@@ -544,7 +546,7 @@ function run() {
       job.msg = final;
       console.log('final: ' + JSON.stringify(job.msg) + ' on ' + (totalReps - warmupReps));
 
-      emitBenchmarkLine(job.calculate().toFixed(3) + (tooVariable ? ' <a href="#toovariable">(±' + Math.round(100*noise) + '%!)</a>' : ''),
+      emitBenchmarkLine(job.calculate().toFixed(3) + (tooVariable ? ' <a href="#faq-toovariable">(±' + Math.round(100*noise) + '%!)</a>' : ''),
         'cell-number');
       flushTable();
       //$('#' + job.benchmark + '-normalized-output').innerHTML = '<b>' + prettyInteger(normalize(job)) + '</b>';
@@ -583,10 +585,10 @@ function run() {
   runJob();
 }
 
-// serialization
+// Serialization
 
 function copyData() {
-  $('#copy-results').innerHTML = (
+  copyResults.innerHTML = (
     '<hr><h3>Copy this:</h3><code><pre>' +
     escape_(finalScore + '|' + tableBody.innerHTML) +
     '</pre></code><hr>'
@@ -594,6 +596,7 @@ function copyData() {
 }
 
 function pasteData() {
+
   var data = window.prompt('Paste the old results:');
   var split = data.split('|');
   showFinalScore(split[0]);
@@ -623,9 +626,8 @@ if (autoRun) {
 
 var resultsArea = $('#results-area');
 
-$('.logo').addEventListener('click', function (e) {
-  e.preventDefault();
-  replaceHash();
+$('.logo').addEventListener('click', function () {
+  window.location.reload();
 });
 
 // Open external links in a new tab.
@@ -651,10 +653,10 @@ function replaceHash(newHash) {
 
 updateHash();
 
-var sections = $$('section[id], h3[id]').map(function (el) {
+var sections = $$('section[id], h3[id], a[name]').map(function (el) {
   return {
     top: el.offsetTop,
-    id: el.id
+    id: el.name || el.id
   };
 });
 
